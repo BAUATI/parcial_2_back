@@ -17,12 +17,12 @@ const usersGet = async (req = request, res = response) => {
 
 const usersPut = async (req, res = response) => {
   const { nombre } = req.params;  
-  const { contraseña, ...resto } = req.body;  
+  const { password, ...resto } = req.body;  
 
 
-  if (contraseña) {
+  if (password) {
       const salt = bcryptjs.genSaltSync();
-      resto.contraseña = bcryptjs.hashSync(contraseña, salt);
+      resto.password = bcryptjs.hashSync(password, salt);
   }
 
   try {
@@ -36,14 +36,14 @@ const usersPut = async (req, res = response) => {
       }
 
       res.json({
-          msg: 'Contraseña actualizada con éxito',
+          msg: 'password actualizada con éxito',
           usuario
       });
 
   } catch (error) {
       console.log(error);
       res.status(500).json({
-          msg: 'Error al actualizar la contraseña, contacte al administrador'
+          msg: 'Error al actualizar la password, contacte al administrador'
       });
   }
 };

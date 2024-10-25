@@ -5,14 +5,13 @@ const UsuarioSchema = Schema({
         type: String,
         unique: true
     },
-    contraseña: {
+    identificacion: {
+        type: String,
+        unique: true
+    },
+    password: {
         type: String,
     },
-    rol: {
-        type: String,
-        required: true,
-        enum: ['ADMIN_ROLE', 'USER_ROLE']
-      },
     estado: {
         type: Boolean,
         default: true,

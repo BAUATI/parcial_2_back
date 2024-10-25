@@ -20,7 +20,7 @@ router.get("/", usersGet);
 router.post('/', [
   check('nombre', 'El nombre es obligatorio').not().isEmpty(),
   check('nombre').custom(existeNombre), 
-  check('contraseña', 'La contraseña es obligatoria').not().isEmpty(),
+  check('password', 'La contraseña es obligatoria').not().isEmpty(),
   check('rol', 'El rol es obligatorio').custom(async (rol) => {
     const existeRol = await Role.findOne({ rol });
     if (!existeRol) {

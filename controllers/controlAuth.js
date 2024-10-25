@@ -4,7 +4,7 @@ const { jsonJWT } = require('../helpers/token');
 const Usuario = require('../models/modelUser');
 
 const login = async (req, res = response) => {
-  const { nombre, contraseña } = req.body;
+  const { nombre, password } = req.body;
 
   try {
     const usuario = await Usuario.findOne({ nombre });
@@ -20,7 +20,7 @@ const login = async (req, res = response) => {
       });
     }
 
-    const validaContraseña = bcryptjs.compareSync(contraseña, usuario.contraseña);
+    const validaContraseña = bcryptjs.compareSync(password, usuario.password);
     if (!validaContraseña) {
       return res.status(400).json({
         msg: 'La contraseña no es correcta'
